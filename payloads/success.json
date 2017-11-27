@@ -1,0 +1,39 @@
+{
+  "eventName":"build_success",
+  "eventData":{
+    "passed":true,
+    "failed":false,
+    "status":"completed",
+    "started":"11/26/2017 11:56 PM",
+    "finished":"11/27/2017 12:00 AM",
+    "duration":"00:04:21.8520605",
+    "projectId":386005,
+    "projectName":"hlsw-portable",
+    "buildId":12329320,
+    "buildNumber":4,
+    "buildVersion":"4",
+    "repositoryProvider":"gitHub",
+    "repositoryScm":"git",
+    "repositoryName":"portapps/hlsw-portable",
+    "branch":"master",
+    "commitId":"ec312f29bb",
+    "commitAuthor":"CrazyMax",
+    "commitAuthorEmail":"crazy-max@users.noreply.github.com",
+    "commitAuthorUsername":"crazy-max",
+    "commitDate":"11/26/2017 11:33 PM",
+    "commitMessage":"Test webhook",
+    "commitMessageExtended":"",
+    "committerName":"CrazyMax",
+    "committerEmail":"crazy-max@users.noreply.github.com",
+    "buildUrl":"https://ci.appveyor.com/project/crazy-max/hlsw-portable/build/4",
+    "commitUrl":"https://github.com/portapps/hlsw-portable/commit/ec312f29bb",
+    "notificationSettingsUrl":"https://ci.appveyor.com/notifications",
+    "isPullRequest":false,
+    "messages":[
+
+    ],
+    "jobs":[
+
+    ]
+  }
+}
