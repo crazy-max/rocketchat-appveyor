@@ -1,55 +1,17 @@
 /**
  * appveyor-incoming.js
- * Add Appveyor notifications via a new WebHook in Rocket.Chat
+ * Add AppVeyor notifications via a new WebHook in Rocket.Chat
  * @license MIT
- * @version 0.1
+ * @version 0.2
  * @author  CrazyMax, https://github.com/crazy-max
- * @updated 2017-11-27
+ * @updated 2018-10-14
  * @link    https://github.com/crazy-max/rocketchat-appveyor
  */
 
 /* globals console, _, s */
 
-const getData = (obj) => {
-  let statusColor = "#36A64F";
-  let statusText = "completed";
-  if (obj.eventName !== "build_success") {
-    statusColor = "#A63636";
-    statusText = "failed";
-  }
-
-  return {
-    projectName: obj.eventData.projectName,
-    statusColor: statusColor,
-    statusText: statusText,
-    buildNumber: obj.eventData.buildNumber,
-    buildUrl: obj.eventData.buildUrl,
-    commitId: obj.eventData.commitId,
-    commitAuthor: obj.eventData.commitAuthor,
-    commitMessage: obj.eventData.commitMessage,
-    commitDate: obj.eventData.commitDate,
-    commitUrl: obj.eventData.commitUrl,
-    isPullRequest: obj.eventData.isPullRequest,
-    pullRequestId: obj.eventData.pullRequestId,
-    pullRequestUrl: obj.eventData.pullRequestUrl,
-  };
-};
-
-const buildMessage = (obj) => {
-  const data = getData(obj);
-
-  let template = `[Build ${data.projectName} ${data.buildNumber} ${data.statusText}](${data.buildUrl})`;
-  template += "\n" + `Commit [${data.commitId}](${data.commitUrl}) by ${data.commitAuthor}`;
-  if(data.isPullRequest) {
-    template += ` in PR [#${data.pullRequestId}](${data.pullRequestUrl})`;
-  }
-  template += ` on ${data.commitDate}: _${data.commitMessage}_`;
-
-  return {
-    text: template,
-    color: data.statusColor
-  };
-};
+const USERNAME = 'AppVeyor';
+const AVATAR_URL = 'https://raw.githubusercontent.com/crazy-max/rocketchat-appveyor/master/res/avatar.png';
 
 /* exported Script */
 class Script {
@@ -57,12 +19,29 @@ class Script {
    * @params {object} request
    */
   process_incoming_request({ request }) {
-    msg = buildMessage(request.content);
+    let data = request.content;
+    let attachmentColor = `#36A64F`;
+    let statusText = `completed`;
+    let isFailed = data.eventName !== `build_success`;
+    if (isFailed) {
+      attachmentColor = `#A63636`;
+      statusText = `failed`;
+    }
+
+    let attachmentText = `Commit [${data.eventData.commitId}](${data.eventData.commitUrl}) by ${data.eventData.commitAuthor}`;
+    if(data.eventData.isPullRequest) {
+      attachmentText += ` in PR [#${data.eventData.pullRequestId}](${data.eventData.pullRequestUrl})`;
+    }
+    attachmentText += ` on ${data.eventData.commitDate}: _${data.eventData.commitMessage}_`;
+
     return {
-      content:{
+      content: {
+        username: USERNAME,
+        icon_url: AVATAR_URL,
+        text: `Build [#${data.eventData.buildNumber}](${data.eventData.buildUrl}) has ${statusText} for project ${data.eventData.projectName}.`,
         attachments: [{
-          text: msg.text,
-          color: msg.color
+          text: attachmentText,
+          color: attachmentColor
         }]
       }
     };
