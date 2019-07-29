@@ -1,5 +1,8 @@
 <p align="center"><a href="https://github.com/crazy-max/rocketchat-appveyor" target="_blank"><img height="128" src="https://github.com/crazy-max/rocketchat-appveyor/blob/master/res/rocketchat-appveyor.png"></a></p>
 
+[![Support me on Patreon](https://img.shields.io/badge/donate-patreon-fb664e.svg?style=flat-square)](https://www.patreon.com/crazymax)
+[![Donate Paypal](https://img.shields.io/badge/donate-paypal-7057ff.svg?style=flat-square)](https://www.paypal.me/crazyws)
+
 ## About
 
 Add [AppVeyor](https://www.appveyor.com) notifications via a new WebHook in Rocket.Chat.
@@ -41,3 +44,16 @@ This script will generate notifications for the following build events:
 *Note:* If status is completed, message color is green otherwise it is red.
 
 If you want more customizations, please look in AppVeyor documentation: <https://www.appveyor.com/docs/notifications/#webhooks>
+
+## How can I help ?
+
+All kinds of contributions are welcome :raised_hands:!<br />
+The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:<br />
+But we're not gonna lie to each other, I'd rather you buy me a beer or two :beers:!
+
+[![Support me on Patreon](res/patreon.png)](https://www.patreon.com/crazymax) 
+[![Paypal Donate](res/paypal.png)](https://www.paypal.me/crazyws)
+
+## License
+
+MIT. See `LICENSE` for more details.
